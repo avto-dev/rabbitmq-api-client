@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient;
 
+use GuzzleHttp\Exception\RequestException;
 use PackageVersions\Versions;
 use Tarampampam\Wrappers\Json;
 use GuzzleHttp\Exception\GuzzleException;
@@ -58,7 +59,7 @@ class Client implements ClientInterface
     /**
      * @param string|null $node_name
      *
-     * @throws GuzzleException
+     * @throws RequestException
      * @throws JsonEncodeDecodeException
      *
      * @return bool
@@ -81,7 +82,7 @@ class Client implements ClientInterface
      * @param string $queue_name
      * @param string $vhost
      *
-     * @throws GuzzleException
+     * @throws RequestException
      * @throws JsonEncodeDecodeException
      *
      * @return QueueInfo
@@ -95,7 +96,7 @@ class Client implements ClientInterface
             ->getBody()
             ->getContents();
 
-        return new QueueInfo(Json::decode($response));
+        return new QueueInfo((array) Json::decode($response));
     }
 
     /**

@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient\Tests;
 
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Response;
 use Tarampampam\Wrappers\Json;
 use AvtoDev\RabbitMqApiClient\QueueInfo;
@@ -81,7 +82,7 @@ class ClientTest extends AbstractTestCase
      */
     public function testPingWithServerError()
     {
-        $this->expectException(GuzzleException::class);
+        $this->expectException(RequestException::class);
 
         $this->client->mock_handler->append(
             new Response(500, [], 'Service unavailable')
@@ -122,7 +123,7 @@ class ClientTest extends AbstractTestCase
      */
     public function testQueueInfoWithServerError()
     {
-        $this->expectException(GuzzleException::class);
+        $this->expectException(RequestException::class);
 
         $this->client->mock_handler->append(
             new Response(500, [], 'Service unavailable')
