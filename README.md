@@ -26,7 +26,7 @@ $ composer require avto-dev/rabbitmq-api-client "^1.0"
 
 > You need to fix the major version of package.
 
-> If your application based on Laravel framework - you can use next service-provider (Laravel 5.5 and above uses Package Auto-Discovery, so doesn't require you to manually register the service-provider):
+> If your application based on Laravel framework - you can register package service-provider in your `./config/app.php` (Laravel 5.5 and above uses Package Auto-Discovery, so doesn't require you to manually register the service-provider):
 >
 >```php
 >'providers' => [
