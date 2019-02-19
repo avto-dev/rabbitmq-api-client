@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient;
 
-use GuzzleHttp\Client as GuzzleHttpClient;
-use GuzzleHttp\ClientInterface as GuzzleClientInterface;
 use PackageVersions\Versions;
 use Tarampampam\Wrappers\Json;
+use GuzzleHttp\Client as GuzzleHttpClient;
+use GuzzleHttp\ClientInterface as GuzzleClientInterface;
 
 class Client implements ClientInterface
 {
@@ -30,7 +30,7 @@ class Client implements ClientInterface
      * Client constructor.
      *
      * @param ConnectionSettingsInterface $settings
-     * @param array              $guzzle_config
+     * @param array                       $guzzle_config
      *
      * @see \GuzzleHttp\Client::__construct
      */

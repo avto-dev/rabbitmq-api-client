@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient\Tests;
 
-use AvtoDev\RabbitMqApiClient\Client;
-use PackageVersions\Versions;
 use GuzzleHttp\Psr7\Response;
+use PackageVersions\Versions;
 use Tarampampam\Wrappers\Json;
+use AvtoDev\RabbitMqApiClient\Client;
 use AvtoDev\RabbitMqApiClient\QueueInfo;
 use GuzzleHttp\Exception\RequestException;
 use AvtoDev\RabbitMqApiClient\ConnectionSettings;
@@ -47,7 +47,7 @@ class ClientTest extends AbstractTestCase
     {
         $this->assertSame($version = Versions::getVersion(Client::SELF_PACKAGE_NAME), $this->client::version(false));
 
-        $this->assertSame(\substr($version, 0, (int) \strpos($version, '@')), $this->client::version());
+        $this->assertSame(\mb_substr($version, 0, (int) \mb_strpos($version, '@')), $this->client::version());
     }
 
     /**
