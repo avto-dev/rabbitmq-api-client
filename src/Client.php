@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient;
 
+use PackageVersions\Versions;
 use Tarampampam\Wrappers\Json;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client as GuzzleHttpClient;
@@ -12,6 +13,8 @@ use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
 
 class Client implements ClientInterface
 {
+    const SELF_PACKAGE_NAME = 'avto-dev/rabbitmq-api-client';
+
     /**
      * @var ConnectionSettings
      */
@@ -21,11 +24,6 @@ class Client implements ClientInterface
      * @var GuzzleClientInterface
      */
     protected $http_client;
-
-    /**
-     * @var array
-     */
-    protected $request_options = [];
 
     /**
      * Client constructor.
@@ -39,7 +37,22 @@ class Client implements ClientInterface
     {
         $this->settings        = $settings;
         $this->http_client     = $this->httpClientFactory($guzzle_config);
-        $this->request_options = $this->defaultRequestOptions();
+    }
+
+    /**
+     * @param bool $without_hash
+     *
+     * @return string
+     */
+    public static function clientVersion(bool $without_hash = true): string
+    {
+        $version = Versions::getVersion(self::SELF_PACKAGE_NAME);
+
+        if ($without_hash === true && \is_int($delimiter_position = \strpos($version, '@'))) {
+            return \substr($version, 0, (int) $delimiter_position);
+        }
+
+        return $version;
     }
 
     /**
@@ -57,7 +70,7 @@ class Client implements ClientInterface
                 : '/' . \ltrim($node_name, ' /'));
 
         $response = $this->http_client
-            ->request('get', $url, $this->request_options)
+            ->request('get', $url, $this->defaultRequestOptions())
             ->getBody()
             ->getContents();
 
@@ -78,7 +91,7 @@ class Client implements ClientInterface
         $url = \sprintf('/api/queues/%s/%s', \urlencode($vhost), \urlencode($queue_name));
 
         $response = $this->http_client
-            ->request('get', $url, $this->request_options)
+            ->request('get', $url, $this->defaultRequestOptions())
             ->getBody()
             ->getContents();
 

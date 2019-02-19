@@ -4,10 +4,14 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient;
 
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
+use Tarampampam\Wrappers\Json;
+
 /**
  * @todo: Write all data getters
  */
-class QueueInfo
+class QueueInfo implements Jsonable, Arrayable
 {
     /**
      * @var array
@@ -70,5 +74,21 @@ class QueueInfo
     public function getVhost()
     {
         return $this->raw_data['vhost'] ?? null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toJson($options = 0): string
+    {
+        return Json::encode($this->raw_data);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toArray(): array
+    {
+        return $this->raw_data;
     }
 }
