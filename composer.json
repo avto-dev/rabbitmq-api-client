@@ -16,9 +16,12 @@
     ],
     "require": {
         "php": ">=7.0",
+        "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "illuminate/support": ">=5.5.0 <5.8.0"
+        "guzzlehttp/guzzle": "^6.3",
+        "illuminate/support": ">=5.5.0 <5.8.0",
+        "tarampampam/wrappers-php": "^1.2"
     },
     "require-dev": {
         "laravel/laravel": ">=5.5.0 <5.8.0",

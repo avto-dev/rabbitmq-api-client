@@ -1,0 +1,23 @@
+version: '3.2'
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  rabbit-data:
+
+services:
+  rabbitmq:
+    image: rabbitmq:${RABBITMQ_VERSION:-3.7.8}-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_VHOST: '/'
+    volumes:
+    - rabbit-data:/var/lib/rabbitmq/mnesia/rabbit@my-rabbit:cached
+    ports:
+    - 5672
+    - '15672:15672'
+    networks:
+    - app-network
