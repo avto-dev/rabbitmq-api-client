@@ -4,11 +4,10 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient;
 
-use GuzzleHttp\Exception\RequestException;
 use PackageVersions\Versions;
 use Tarampampam\Wrappers\Json;
-use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client as GuzzleHttpClient;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
 use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
 

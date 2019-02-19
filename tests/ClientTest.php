@@ -4,11 +4,10 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient\Tests;
 
-use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Response;
 use Tarampampam\Wrappers\Json;
 use AvtoDev\RabbitMqApiClient\QueueInfo;
-use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\RequestException;
 use AvtoDev\RabbitMqApiClient\ConnectionSettings;
 use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
 
