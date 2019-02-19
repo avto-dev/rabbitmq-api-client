@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient\Tests;
 
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Handler\MockHandler;
 use AvtoDev\RabbitMqApiClient\Client;
 use AvtoDev\RabbitMqApiClient\ConnectionSettings;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
 
 class ClientMock extends Client
 {

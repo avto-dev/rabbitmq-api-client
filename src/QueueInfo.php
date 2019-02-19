@@ -4,9 +4,9 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient;
 
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Contracts\Support\Jsonable;
 use Tarampampam\Wrappers\Json;
+use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Contracts\Support\Arrayable;
 
 /**
  * @todo: Write all data getters

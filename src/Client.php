@@ -48,8 +48,8 @@ class Client implements ClientInterface
     {
         $version = Versions::getVersion(self::SELF_PACKAGE_NAME);
 
-        if ($without_hash === true && \is_int($delimiter_position = \strpos($version, '@'))) {
-            return \substr($version, 0, (int) $delimiter_position);
+        if ($without_hash === true && \is_int($delimiter_position = \mb_strpos($version, '@'))) {
+            return \mb_substr($version, 0, (int) $delimiter_position);
         }
 
         return $version;

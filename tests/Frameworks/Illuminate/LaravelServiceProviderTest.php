@@ -4,9 +4,9 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient\Tests\Frameworks\Illuminate;
 
-use AvtoDev\RabbitMqApiClient\Tests\Traits\CreatesApplicationTrait;
 use Illuminate\Config\Repository as ConfigRepository;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use AvtoDev\RabbitMqApiClient\Tests\Traits\CreatesApplicationTrait;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider;
 
 class LaravelServiceProviderTest extends BaseTestCase
