@@ -45,10 +45,10 @@ class Client implements ClientInterface
     /**
      * @param string|null $node_name
      *
-     * @return bool
-     *
      * @throws GuzzleException
      * @throws JsonEncodeDecodeException
+     *
+     * @return bool
      */
     public function healthcheck(string $node_name = null): bool
     {
@@ -68,10 +68,10 @@ class Client implements ClientInterface
      * @param string $queue_name
      * @param string $vhost
      *
-     * @return QueueInfo
-     *
      * @throws GuzzleException
      * @throws JsonEncodeDecodeException
+     *
+     * @return QueueInfo
      */
     public function queueInfo(string $queue_name, string $vhost = '/'): QueueInfo
     {
