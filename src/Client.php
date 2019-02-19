@@ -4,19 +4,20 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient;
 
+use GuzzleHttp\Client as GuzzleHttpClient;
+use GuzzleHttp\ClientInterface as GuzzleClientInterface;
 use PackageVersions\Versions;
 use Tarampampam\Wrappers\Json;
-use GuzzleHttp\Client as GuzzleHttpClient;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\ClientInterface as GuzzleClientInterface;
-use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
 
 class Client implements ClientInterface
 {
+    /**
+     * Self package name.
+     */
     const SELF_PACKAGE_NAME = 'avto-dev/rabbitmq-api-client';
 
     /**
-     * @var ConnectionSettings
+     * @var ConnectionSettingsInterface
      */
     protected $settings;
 
@@ -28,23 +29,21 @@ class Client implements ClientInterface
     /**
      * Client constructor.
      *
-     * @param ConnectionSettings $settings
+     * @param ConnectionSettingsInterface $settings
      * @param array              $guzzle_config
      *
      * @see \GuzzleHttp\Client::__construct
      */
-    public function __construct(ConnectionSettings $settings, array $guzzle_config = [])
+    public function __construct(ConnectionSettingsInterface $settings, array $guzzle_config = [])
     {
-        $this->settings        = $settings;
-        $this->http_client     = $this->httpClientFactory($guzzle_config);
+        $this->settings    = $settings;
+        $this->http_client = $this->httpClientFactory($guzzle_config);
     }
 
     /**
-     * @param bool $without_hash
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    public static function clientVersion(bool $without_hash = true): string
+    public static function version(bool $without_hash = true): string
     {
         $version = Versions::getVersion(self::SELF_PACKAGE_NAME);
 
@@ -56,12 +55,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * @param string|null $node_name
-     *
-     * @throws RequestException
-     * @throws JsonEncodeDecodeException
-     *
-     * @return bool
+     * {@inheritdoc}
      */
     public function healthcheck(string $node_name = null): bool
     {
@@ -69,33 +63,27 @@ class Client implements ClientInterface
                 ? ''
                 : '/' . \ltrim($node_name, ' /'));
 
-        $response = $this->http_client
+        $contents = $this->http_client
             ->request('get', $url, $this->defaultRequestOptions())
             ->getBody()
             ->getContents();
 
-        return (Json::decode($response)['status'] ?? null) === 'ok';
+        return (Json::decode($contents)['status'] ?? null) === 'ok';
     }
 
     /**
-     * @param string $queue_name
-     * @param string $vhost
-     *
-     * @throws RequestException
-     * @throws JsonEncodeDecodeException
-     *
-     * @return QueueInfo
+     * {@inheritdoc}
      */
-    public function queueInfo(string $queue_name, string $vhost = '/'): QueueInfo
+    public function queueInfo(string $queue_name, string $vhost = '/'): QueueInfoInterface
     {
         $url = \sprintf('/api/queues/%s/%s', \urlencode($vhost), \urlencode($queue_name));
 
-        $response = $this->http_client
+        $contents = $this->http_client
             ->request('get', $url, $this->defaultRequestOptions())
             ->getBody()
             ->getContents();
 
-        return new QueueInfo((array) Json::decode($response));
+        return new QueueInfo((array) Json::decode($contents));
     }
 
     /**

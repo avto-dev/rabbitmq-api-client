@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient;
 
-class ConnectionSettings
+class ConnectionSettings implements ConnectionSettingsInterface
 {
     /**
      * @var string
@@ -50,11 +50,11 @@ class ConnectionSettings
         $this->login       = $login;
         $this->password    = $password;
         $this->timeout     = $timeout;
-        $this->user_agent  = $user_agent ?? \sprintf('%s/%s', Client::SELF_PACKAGE_NAME, Client::clientVersion());
+        $this->user_agent  = $user_agent ?? \sprintf('%s v%s', Client::SELF_PACKAGE_NAME, Client::version());
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getEntryPoint(): string
     {
@@ -62,7 +62,7 @@ class ConnectionSettings
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getLogin(): string
     {
@@ -70,7 +70,7 @@ class ConnectionSettings
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getPassword(): string
     {
@@ -78,7 +78,7 @@ class ConnectionSettings
     }
 
     /**
-     * @return int
+     * {@inheritdoc}
      */
     public function getTimeout(): int
     {
@@ -86,7 +86,7 @@ class ConnectionSettings
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getUserAgent(): string
     {

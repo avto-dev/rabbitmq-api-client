@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient\Tests;
 
+use AvtoDev\RabbitMqApiClient\Client;
+use PackageVersions\Versions;
 use GuzzleHttp\Psr7\Response;
 use Tarampampam\Wrappers\Json;
 use AvtoDev\RabbitMqApiClient\QueueInfo;
@@ -11,6 +13,9 @@ use GuzzleHttp\Exception\RequestException;
 use AvtoDev\RabbitMqApiClient\ConnectionSettings;
 use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
 
+/**
+ * @coversDefaultClass \AvtoDev\RabbitMqApiClient\Client
+ */
 class ClientTest extends AbstractTestCase
 {
     /**
@@ -34,6 +39,20 @@ class ClientTest extends AbstractTestCase
     }
 
     /**
+     * @covers ::version
+     *
+     * @return void
+     */
+    public function testVersion()
+    {
+        $this->assertSame($version = Versions::getVersion(Client::SELF_PACKAGE_NAME), $this->client::version(false));
+
+        $this->assertSame(\substr($version, 0, (int) \strpos($version, '@')), $this->client::version());
+    }
+
+    /**
+     * @covers ::healthcheck
+     *
      * @return void
      */
     public function testPingSuccess()
@@ -48,6 +67,8 @@ class ClientTest extends AbstractTestCase
     }
 
     /**
+     * @covers ::healthcheck
+     *
      * @return void
      */
     public function testPingFailed()
@@ -63,6 +84,8 @@ class ClientTest extends AbstractTestCase
     }
 
     /**
+     * @covers ::healthcheck
+     *
      * @return void
      */
     public function testPingWithWrongJsonResponse()
@@ -77,6 +100,8 @@ class ClientTest extends AbstractTestCase
     }
 
     /**
+     * @covers ::healthcheck
+     *
      * @return void
      */
     public function testPingWithServerError()
@@ -91,6 +116,8 @@ class ClientTest extends AbstractTestCase
     }
 
     /**
+     * @covers ::queueInfo
+     *
      * @return void
      */
     public function testQueueInfoSuccess()
@@ -104,6 +131,8 @@ class ClientTest extends AbstractTestCase
     }
 
     /**
+     * @covers ::queueInfo
+     *
      * @return void
      */
     public function testQueueInfoWithWrongJsonResponse()
@@ -118,6 +147,8 @@ class ClientTest extends AbstractTestCase
     }
 
     /**
+     * @covers ::queueInfo
+     *
      * @return void
      */
     public function testQueueInfoWithServerError()

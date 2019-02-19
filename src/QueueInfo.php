@@ -5,13 +5,8 @@ declare(strict_types = 1);
 namespace AvtoDev\RabbitMqApiClient;
 
 use Tarampampam\Wrappers\Json;
-use Illuminate\Contracts\Support\Jsonable;
-use Illuminate\Contracts\Support\Arrayable;
 
-/**
- * @todo: Write all data getters
- */
-class QueueInfo implements Jsonable, Arrayable
+class QueueInfo implements QueueInfoInterface
 {
     /**
      * @var array
@@ -29,7 +24,7 @@ class QueueInfo implements Jsonable, Arrayable
     }
 
     /**
-     * @return int
+     * {@inheritdoc}
      */
     public function getConsumersCount(): int
     {
@@ -37,7 +32,7 @@ class QueueInfo implements Jsonable, Arrayable
     }
 
     /**
-     * @return int
+     * {@inheritdoc}
      */
     public function getMessagesCount(): int
     {
@@ -45,7 +40,7 @@ class QueueInfo implements Jsonable, Arrayable
     }
 
     /**
-     * @return string|null
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -53,7 +48,7 @@ class QueueInfo implements Jsonable, Arrayable
     }
 
     /**
-     * @return string|null
+     * {@inheritdoc}
      */
     public function getNodeName()
     {
@@ -61,7 +56,7 @@ class QueueInfo implements Jsonable, Arrayable
     }
 
     /**
-     * @return string|null
+     * {@inheritdoc}
      */
     public function getState()
     {
@@ -69,7 +64,7 @@ class QueueInfo implements Jsonable, Arrayable
     }
 
     /**
-     * @return string|null
+     * {@inheritdoc}
      */
     public function getVhost()
     {
