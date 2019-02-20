@@ -17,7 +17,7 @@ services:
     volumes:
     - rabbit-data:/var/lib/rabbitmq/mnesia/rabbit@my-rabbit:cached
     ports:
-    - 5672
+   #- 5672
     - '15672:15672'
     networks:
     - app-network
