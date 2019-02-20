@@ -4,14 +4,14 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient\Tests\Frameworks\Illuminate;
 
+use Illuminate\Support\Str;
+use GuzzleHttp\Client as GuzzleHttpClient;
 use AvtoDev\RabbitMqApiClient\ClientInterface;
 use AvtoDev\RabbitMqApiClient\ConnectionSettingsInterface;
+use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactory;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactoryInterface;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider;
-use GuzzleHttp\Client as GuzzleHttpClient;
-use Illuminate\Contracts\Config\Repository as ConfigRepository;
-use Illuminate\Support\Str;
 
 /**
  * @coversDefaultClass \AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactory
@@ -117,11 +117,10 @@ class ClientFactoryTest extends AbstractLaravelTestCase
         $http_client->setAccessible(true);
         $http_client = $http_client->getValue($client);
         /** @var GuzzleHttpClient $http_client */
-
         $settings = $reflection->getProperty('settings');
         $settings->setAccessible(true);
         $settings = $settings->getValue($client);
-        /** @var ConnectionSettingsInterface $settings */
+        /* @var ConnectionSettingsInterface $settings */
 
         $this->assertSame($entrypoint, $settings->getEntryPoint());
         $this->assertSame($login, $settings->getLogin());
@@ -134,7 +133,7 @@ class ClientFactoryTest extends AbstractLaravelTestCase
         $http_config = $http_client_reflection->getProperty('config');
         $http_config->setAccessible(true);
         $http_config = $http_config->getValue($http_client);
-        /** @var array $http_config */
+        /* @var array $http_config */
 
         $this->assertSame($base_uri, (string) $http_config['base_uri']);
     }
