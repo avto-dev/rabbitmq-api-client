@@ -28,7 +28,7 @@ class ConnectionSettingsTest extends AbstractTestCase
     public function testConstructor()
     {
         $settings = new ConnectionSettings(
-            ($point = 'http://rabbitmq.com/foo') . '/ ',
+            ($point = 'http://rabbitmq.com:1234/foo') . '/ ',
             $name = Str::random(),
             $pass = Str::random(),
             $timeout = \random_int(1, 99),

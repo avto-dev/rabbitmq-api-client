@@ -4,25 +4,17 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient\Tests\Frameworks\Illuminate;
 
+use AvtoDev\RabbitMqApiClient\ClientInterface;
+use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactory;
+use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactoryInterface;
 use Illuminate\Config\Repository as ConfigRepository;
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use AvtoDev\RabbitMqApiClient\Tests\Traits\CreatesApplicationTrait;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider;
 
-class LaravelServiceProviderTest extends BaseTestCase
+/**
+ * @coversDefaultClass \AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider
+ */
+class LaravelServiceProviderTest extends AbstractLaravelTestCase
 {
-    use CreatesApplicationTrait;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->app->register(LaravelServiceProvider::class);
-    }
-
     /**
      * @return void
      */
@@ -46,8 +38,24 @@ class LaravelServiceProviderTest extends BaseTestCase
             $this->assertEquals($config->get($base . '.' . $key), $value);
         }
 
-        foreach (['foo'] as $config_key) {
+        foreach (['default', 'connections'] as $config_key) {
             $this->assertArrayHasKey($config_key, $configs);
         }
+
+        $default_connection = $configs['default'];
+        $default_connection_settings = $configs['connections'][$default_connection];
+
+        foreach (['entrypoint', 'login', 'password', 'timeout', 'user_agent'] as $connection_key) {
+            $this->assertArrayHasKey($connection_key, $default_connection_settings);
+        }
+    }
+
+    /**
+     * @return void
+     */
+    public function testRegistrationComponentsInIoc()
+    {
+        $this->assertInstanceOf(ClientFactory::class, $this->app->make(ClientFactoryInterface::class));
+        $this->assertInstanceOf(ClientInterface::class, $default_client = $this->app->make(ClientInterface::class));
     }
 }

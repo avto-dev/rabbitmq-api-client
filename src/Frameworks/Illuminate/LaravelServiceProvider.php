@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient\Frameworks\Illuminate;
 
+use AvtoDev\RabbitMqApiClient\ClientInterface;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 
 class LaravelServiceProvider extends IlluminateServiceProvider
@@ -29,16 +31,6 @@ class LaravelServiceProvider extends IlluminateServiceProvider
     }
 
     /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-    }
-
-    /**
      * Register package services.
      *
      * @return void
@@ -46,6 +38,15 @@ class LaravelServiceProvider extends IlluminateServiceProvider
     public function register()
     {
         $this->initializeConfigs();
+
+        $this->app->bind(ClientFactoryInterface::class, ClientFactory::class);
+
+        $this->app->bind(ClientInterface::class, function (Application $app) {
+            /** @var ClientFactoryInterface $factory */
+            $factory = $app->make(ClientFactoryInterface::class);
+
+            return $factory->make();
+        });
     }
 
     /**
