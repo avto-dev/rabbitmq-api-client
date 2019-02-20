@@ -4,11 +4,11 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient\Tests;
 
-use AvtoDev\RabbitMqApiClient\QueueInfo;
-use AvtoDev\RabbitMqApiClient\QueueInfoInterface;
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Contracts\Support\Jsonable;
 use Tarampampam\Wrappers\Json;
+use AvtoDev\RabbitMqApiClient\QueueInfo;
+use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Contracts\Support\Arrayable;
+use AvtoDev\RabbitMqApiClient\QueueInfoInterface;
 
 /**
  * @coversDefaultClass \AvtoDev\RabbitMqApiClient\QueueInfo
