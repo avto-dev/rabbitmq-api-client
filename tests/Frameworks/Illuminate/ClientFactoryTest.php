@@ -4,14 +4,14 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient\Tests\Frameworks\Illuminate;
 
+use Illuminate\Support\Str;
+use GuzzleHttp\Client as GuzzleHttpClient;
 use AvtoDev\RabbitMqApiClient\ClientInterface;
 use AvtoDev\RabbitMqApiClient\ConnectionSettingsInterface;
+use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactory;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactoryInterface;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider;
-use GuzzleHttp\Client as GuzzleHttpClient;
-use Illuminate\Contracts\Config\Repository as ConfigRepository;
-use Illuminate\Support\Str;
 
 /**
  * @coversDefaultClass \AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactory
