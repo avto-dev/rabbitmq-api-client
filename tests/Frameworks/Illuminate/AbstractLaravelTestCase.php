@@ -20,4 +20,22 @@ abstract class AbstractLaravelTestCase extends \Illuminate\Foundation\Testing\Te
 
         $this->app->register(LaravelServiceProvider::class);
     }
+
+    /**
+     * Get a instance property (public/private/protected) value.
+     *
+     * @param object $object
+     * @param string $property_name
+     *
+     * @return mixed
+     */
+    protected function getProperty($object, string $property_name)
+    {
+        $reflection = new \ReflectionClass($object);
+
+        $property = $reflection->getProperty($property_name);
+        $property->setAccessible(true);
+
+        return $property->getValue($object);
+    }
 }

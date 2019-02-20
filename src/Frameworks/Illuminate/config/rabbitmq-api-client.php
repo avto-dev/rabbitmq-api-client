@@ -26,7 +26,7 @@ return [
     'connections' => [
 
         'default-connection' => [
-            'entrypoint' => env('RABBITMQ_API_ENTRYPOINT'),
+            'entrypoint' => env('RABBITMQ_API_ENTRYPOINT', 'http://127.0.0.1:15672'),
             'login'      => env('RABBITMQ_API_LOGIN', 'guest'),
             'password'   => env('RABBITMQ_API_PASSWORD', 'guest'),
             'timeout'    => (int) env('RABBITMQ_API_TIMEOUT', 5),
