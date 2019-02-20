@@ -10,6 +10,7 @@ use Tarampampam\Wrappers\Json;
 use AvtoDev\RabbitMqApiClient\Client;
 use AvtoDev\RabbitMqApiClient\QueueInfo;
 use GuzzleHttp\Exception\RequestException;
+use AvtoDev\RabbitMqApiClient\ClientInterface;
 use AvtoDev\RabbitMqApiClient\ConnectionSettings;
 use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
 
@@ -39,6 +40,16 @@ class ClientTest extends AbstractTestCase
     }
 
     /**
+     * @return void
+     */
+    public function testImplementation()
+    {
+        $client = new Client(new ConnectionSettings('http://127.0.0.1:15672'));
+
+        $this->assertInstanceOf(ClientInterface::class, $client);
+    }
+
+    /**
      * @covers ::version
      *
      * @return void
@@ -51,8 +62,6 @@ class ClientTest extends AbstractTestCase
     }
 
     /**
-     * @covers ::healthcheck
-     *
      * @return void
      */
     public function testPingSuccess()
@@ -67,8 +76,6 @@ class ClientTest extends AbstractTestCase
     }
 
     /**
-     * @covers ::healthcheck
-     *
      * @return void
      */
     public function testPingFailed()
@@ -84,8 +91,6 @@ class ClientTest extends AbstractTestCase
     }
 
     /**
-     * @covers ::healthcheck
-     *
      * @return void
      */
     public function testPingWithWrongJsonResponse()
@@ -100,8 +105,6 @@ class ClientTest extends AbstractTestCase
     }
 
     /**
-     * @covers ::healthcheck
-     *
      * @return void
      */
     public function testPingWithServerError()
@@ -116,8 +119,6 @@ class ClientTest extends AbstractTestCase
     }
 
     /**
-     * @covers ::queueInfo
-     *
      * @return void
      */
     public function testQueueInfoSuccess()
@@ -131,8 +132,6 @@ class ClientTest extends AbstractTestCase
     }
 
     /**
-     * @covers ::queueInfo
-     *
      * @return void
      */
     public function testQueueInfoWithWrongJsonResponse()
@@ -147,8 +146,6 @@ class ClientTest extends AbstractTestCase
     }
 
     /**
-     * @covers ::queueInfo
-     *
      * @return void
      */
     public function testQueueInfoWithServerError()
