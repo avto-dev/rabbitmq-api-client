@@ -5,9 +5,9 @@ declare(strict_types = 1);
 namespace AvtoDev\RabbitMqApiClient\Tests\Frameworks\Illuminate;
 
 use AvtoDev\RabbitMqApiClient\ClientInterface;
+use Illuminate\Config\Repository as ConfigRepository;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactory;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactoryInterface;
-use Illuminate\Config\Repository as ConfigRepository;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider;
 
 /**
@@ -42,7 +42,7 @@ class LaravelServiceProviderTest extends AbstractLaravelTestCase
             $this->assertArrayHasKey($config_key, $configs);
         }
 
-        $default_connection = $configs['default'];
+        $default_connection          = $configs['default'];
         $default_connection_settings = $configs['connections'][$default_connection];
 
         foreach (['entrypoint', 'login', 'password', 'timeout', 'user_agent'] as $connection_key) {

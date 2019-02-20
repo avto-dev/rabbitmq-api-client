@@ -26,9 +26,9 @@ interface ClientFactoryInterface
      *
      * @param string|null $connection_name
      *
-     * @return ClientInterface
-     *
      * @throws \InvalidArgumentException
+     *
+     * @return ClientInterface
      */
     public function make(string $connection_name = null): ClientInterface;
 }

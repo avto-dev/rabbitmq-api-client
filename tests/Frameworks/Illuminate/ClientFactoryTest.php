@@ -4,12 +4,12 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient\Tests\Frameworks\Illuminate;
 
+use Illuminate\Support\Str;
 use AvtoDev\RabbitMqApiClient\ClientInterface;
-use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactoryInterface;
-use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactory;
-use Illuminate\Support\Str;
+use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactoryInterface;
+use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider;
 
 /**
  * @coversDefaultClass \AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactory
@@ -34,7 +34,7 @@ class ClientFactoryTest extends AbstractLaravelTestCase
         parent::setUp();
 
         $this->factory = new ClientFactory($this->app->make(ConfigRepository::class));
-        $this->root = LaravelServiceProvider::getConfigRootKeyName();
+        $this->root    = LaravelServiceProvider::getConfigRootKeyName();
     }
 
     /**
