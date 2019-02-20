@@ -56,6 +56,6 @@ class LaravelServiceProviderTest extends AbstractLaravelTestCase
     public function testRegistrationComponentsInIoc()
     {
         $this->assertInstanceOf(ClientFactory::class, $this->app->make(ClientFactoryInterface::class));
-        $this->assertInstanceOf(ClientInterface::class, $default_client = $this->app->make(ClientInterface::class));
+        $this->assertInstanceOf(ClientInterface::class, $this->app->make(ClientInterface::class));
     }
 }

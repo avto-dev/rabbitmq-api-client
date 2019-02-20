@@ -37,7 +37,7 @@ class ClientFactory implements ClientFactoryInterface
      */
     public function connectionNames(): array
     {
-        return \array_keys($this->config->get("{$this->config_root}.connections"));
+        return \array_keys((array) $this->config->get("{$this->config_root}.connections"));
     }
 
     /**
@@ -51,7 +51,7 @@ class ClientFactory implements ClientFactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function make(string $connection_name = null): ClientInterface
+    public function make(string $connection_name = null, array $options = null): ClientInterface
     {
         $connection_name = $connection_name ?? $this->defaultConnectionName();
 
@@ -62,14 +62,17 @@ class ClientFactory implements ClientFactoryInterface
         $connection_settings = $this->config->get("{$this->config_root}.connections.{$connection_name}");
 
         $settings = new ConnectionSettings(
-            (string) $connection_settings['entrypoint'],
-            (string) $connection_settings['login'],
-            (string) $connection_settings['password'],
-            (int) $connection_settings['timeout'],
-            (string) $connection_settings['user_agent']
+            (string) ($options[$entrypoint_key = 'entrypoint'] ?? $connection_settings[$entrypoint_key]),
+            (string) ($options[$login_key = 'login'] ?? $connection_settings[$login_key]),
+            (string) ($options[$password_key = 'password'] ?? $connection_settings[$password_key]),
+            (int) ($options[$timeout_key = 'timeout'] ?? $connection_settings[$timeout_key] ?? 5),
+            $options[$user_agent_key = 'user_agent'] ?? $connection_settings[$user_agent_key] ?? null
         );
 
-        return $this->clientFactory($settings, (array) ($connection_settings['guzzle_config'] ?? []));
+        return $this->clientFactory(
+            $settings,
+            (array) ($options[$guzzle_config_key = 'guzzle_config'] ?? $connection_settings[$guzzle_config_key] ?? [])
+        );
     }
 
     /**

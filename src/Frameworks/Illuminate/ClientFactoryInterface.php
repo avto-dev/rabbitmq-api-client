@@ -25,10 +25,11 @@ interface ClientFactoryInterface
      * name is not specified - used default connection name.
      *
      * @param string|null $connection_name
+     * @param array|null  $options
      *
      * @throws \InvalidArgumentException
      *
      * @return ClientInterface
      */
-    public function make(string $connection_name = null): ClientInterface;
+    public function make(string $connection_name = null, array $options = null): ClientInterface;
 }

@@ -76,7 +76,7 @@ class QueueInfo implements QueueInfoInterface
      */
     public function toJson($options = 0): string
     {
-        return Json::encode($this->raw_data);
+        return Json::encode($this->raw_data, $options);
     }
 
     /**
