@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient\Tests;
 
+use Illuminate\Support\Str;
 use AvtoDev\RabbitMqApiClient\Client;
 use AvtoDev\RabbitMqApiClient\ConnectionSettings;
 use AvtoDev\RabbitMqApiClient\ConnectionSettingsInterface;
-use Illuminate\Support\Str;
 
 /**
  * @coversDefaultClass \AvtoDev\RabbitMqApiClient\ConnectionSettings

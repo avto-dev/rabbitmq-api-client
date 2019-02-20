@@ -4,12 +4,12 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient\Tests;
 
-use AvtoDev\RabbitMqApiClient\QueueInfo;
-use AvtoDev\RabbitMqApiClient\QueueInfoInterface;
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Str;
 use Tarampampam\Wrappers\Json;
+use AvtoDev\RabbitMqApiClient\QueueInfo;
+use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Contracts\Support\Arrayable;
+use AvtoDev\RabbitMqApiClient\QueueInfoInterface;
 
 /**
  * @coversDefaultClass \AvtoDev\RabbitMqApiClient\QueueInfo
@@ -241,8 +241,7 @@ class QueueInfoTest extends AbstractTestCase
                                      $consumers_count = self::NON_SET, //1
                                      $messages_count = self::NON_SET, //1
                                      $state = self::NON_SET //1
-    ): array
-    {
+    ): array {
         $data = [
             'consumer_details'                => [],
             'arguments'                       => [],
