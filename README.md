@@ -8,7 +8,6 @@
 [![Version][badge_php_version]][link_packagist]
 [![Build Status][badge_build_status]][link_build_status]
 [![Coverage][badge_coverage]][link_coverage]
-[![Code quality][badge_code_quality]][link_code_quality]
 [![Downloads count][badge_downloads_count]][link_packagist]
 [![License][badge_license]][link_license]
 
@@ -18,23 +17,14 @@ This package adds into your PHP application RabbitMQ API client implementation.
 
 Require this package with composer using the following command:
 
-```shell
-$ composer require avto-dev/rabbitmq-api-client "^1.0"
+```bash
+$ composer require avto-dev/rabbitmq-api-client "^2.0"
 ```
 
 > Installed `composer` is required ([how to install composer][getcomposer]).
 
 > You need to fix the major version of package.
 
-> If your application based on Laravel framework - you can register package service-provider in your `./config/app.php` (Laravel 5.5 and above uses Package Auto-Discovery, so doesn't require you to manually register the service-provider):
->
->```php
->'providers' => [
->    // ...
->    AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider::class,
->]
->```
->
 >If you wants to disable package service-provider auto discover, just add into your `composer.json` next lines:
 >
 >```json
@@ -48,12 +38,12 @@ $ composer require avto-dev/rabbitmq-api-client "^1.0"
 >    }
 >}
 >```
->
-> After that you can "publish" package configuration file using following command:
->
-> ```php
-> $ php artisan vendor:publish --provider="AvtoDev\\RabbitMqApiClient\\Frameworks\\Illuminate\\LaravelServiceProvider"
-> ```
+
+After that you can "publish" package configuration file using following command:
+
+```php
+$ php artisan vendor:publish --provider="AvtoDev\\RabbitMqApiClient\\Frameworks\\Illuminate\\LaravelServiceProvider"
+```
 
 ## Usage
 
@@ -99,7 +89,7 @@ class SomeCommand extends \Illuminate\Console\Command
      *
      * @return void
      */
-    public function handle(ClientInterface $client)
+    public function handle(ClientInterface $client): void
     {
         $client->healthcheck(); // `true` or `false`
     }
@@ -108,10 +98,11 @@ class SomeCommand extends \Illuminate\Console\Command
 
 ### Testing
 
-For package testing we use `phpunit` framework. Just write into your terminal:
+For package testing we use `phpunit` framework and `docker-ce` + `docker-compose` as develop environment. So, just write into your terminal after repository cloning:
 
-```shell
-$ git clone git@github.com:avto-dev/rabbitmq-api-client.git ./rabbitmq-api-client && cd $_
+```bash
+$ make build
+$ make latest # or 'make lowest'
 $ make test
 ```
 
@@ -136,7 +127,6 @@ This is open-sourced software licensed under the [MIT License][link_license].
 [badge_packagist_version]:https://img.shields.io/packagist/v/avto-dev/rabbitmq-api-client.svg?maxAge=180
 [badge_php_version]:https://img.shields.io/packagist/php-v/avto-dev/rabbitmq-api-client.svg?longCache=true
 [badge_build_status]:https://travis-ci.org/avto-dev/rabbitmq-api-client.svg?branch=master
-[badge_code_quality]:https://img.shields.io/scrutinizer/g/avto-dev/rabbitmq-api-client.svg?maxAge=180
 [badge_coverage]:https://img.shields.io/codecov/c/github/avto-dev/rabbitmq-api-client/master.svg?maxAge=60
 [badge_downloads_count]:https://img.shields.io/packagist/dt/avto-dev/rabbitmq-api-client.svg?maxAge=180
 [badge_license]:https://img.shields.io/packagist/l/avto-dev/rabbitmq-api-client.svg?longCache=true
@@ -149,7 +139,6 @@ This is open-sourced software licensed under the [MIT License][link_license].
 [link_build_status]:https://travis-ci.org/avto-dev/rabbitmq-api-client
 [link_coverage]:https://codecov.io/gh/avto-dev/rabbitmq-api-client/
 [link_changes_log]:https://github.com/avto-dev/rabbitmq-api-client/blob/master/CHANGELOG.md
-[link_code_quality]:https://scrutinizer-ci.com/g/avto-dev/rabbitmq-api-client/
 [link_issues]:https://github.com/avto-dev/rabbitmq-api-client/issues
 [link_create_issue]:https://github.com/avto-dev/rabbitmq-api-client/issues/new/choose
 [link_commits]:https://github.com/avto-dev/rabbitmq-api-client/commits

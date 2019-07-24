@@ -7,6 +7,7 @@ namespace AvtoDev\RabbitMqApiClient;
 use PackageVersions\Versions;
 use Tarampampam\Wrappers\Json;
 use GuzzleHttp\Client as GuzzleHttpClient;
+use GuzzleHttp\RequestOptions as GuzzleOptions;
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
 
 class Client implements ClientInterface
@@ -14,7 +15,7 @@ class Client implements ClientInterface
     /**
      * Self package name.
      */
-    const SELF_PACKAGE_NAME = 'avto-dev/rabbitmq-api-client';
+    public const SELF_PACKAGE_NAME = 'avto-dev/rabbitmq-api-client';
 
     /**
      * @var ConnectionSettingsInterface
@@ -108,10 +109,10 @@ class Client implements ClientInterface
     protected function defaultRequestOptions(): array
     {
         return [
-            'auth'     => [$this->settings->getLogin(), $this->settings->getPassword()],
-            'base_uri' => $this->settings->getEntryPoint(),
-            'timeout'  => $this->settings->getTimeout(),
-            'headers'  => [
+            'base_uri'             => $this->settings->getEntryPoint(),
+            GuzzleOptions::AUTH    => [$this->settings->getLogin(), $this->settings->getPassword()],
+            GuzzleOptions::TIMEOUT => $this->settings->getTimeout(),
+            GuzzleOptions::HEADERS => [
                 'User-Agent' => $this->settings->getUserAgent(),
                 'Accept'     => 'application/json',
             ],

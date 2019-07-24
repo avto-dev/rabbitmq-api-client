@@ -14,7 +14,7 @@ use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactoryInterface;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider;
 
 /**
- * @coversDefaultClass \AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactory
+ * @covers \AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactory<extended>
  */
 class ClientFactoryTest extends AbstractLaravelTestCase
 {
@@ -36,7 +36,7 @@ class ClientFactoryTest extends AbstractLaravelTestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -58,7 +58,7 @@ class ClientFactoryTest extends AbstractLaravelTestCase
     /**
      * @return void
      */
-    public function testImplementation()
+    public function testImplementation(): void
     {
         $this->assertInstanceOf(ClientFactoryInterface::class, $this->factory);
     }
@@ -66,7 +66,7 @@ class ClientFactoryTest extends AbstractLaravelTestCase
     /**
      * @return void
      */
-    public function testConnectionNames()
+    public function testConnectionNames(): void
     {
         $this->assertSame(
             \array_keys($this->config->get("{$this->root}.connections")),
@@ -77,7 +77,7 @@ class ClientFactoryTest extends AbstractLaravelTestCase
     /**
      * @return void
      */
-    public function testDefaultConnectionName()
+    public function testDefaultConnectionName(): void
     {
         $this->assertSame(
             $this->config->get("{$this->root}.default"),
@@ -88,7 +88,7 @@ class ClientFactoryTest extends AbstractLaravelTestCase
     /**
      * @return void
      */
-    public function testMakeThrownAnExceptionThenPassedWrongConnectionName()
+    public function testMakeThrownAnExceptionThenPassedWrongConnectionName(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -98,7 +98,7 @@ class ClientFactoryTest extends AbstractLaravelTestCase
     /**
      * @return void
      */
-    public function testMakeWithoutPassingConnectionName()
+    public function testMakeWithoutPassingConnectionName(): void
     {
         $this->assertInstanceOf(ClientInterface::class, $this->factory->make());
     }
@@ -106,7 +106,7 @@ class ClientFactoryTest extends AbstractLaravelTestCase
     /**
      * @return void
      */
-    public function testMakeWithPassingConnectionName()
+    public function testMakeWithPassingConnectionName(): void
     {
         $this->assertInstanceOf(ClientInterface::class, $this->factory->make('test'));
     }
@@ -114,7 +114,7 @@ class ClientFactoryTest extends AbstractLaravelTestCase
     /**
      * @return void
      */
-    public function testMakeWithPassingOptions()
+    public function testMakeWithPassingOptions(): void
     {
         $client = $this->factory->make(null, [
             'entrypoint'    => $entrypoint = 'https://foo/bar',
@@ -147,7 +147,7 @@ class ClientFactoryTest extends AbstractLaravelTestCase
     /**
      * @return void
      */
-    public function testMakeWithoutPassingOptions()
+    public function testMakeWithoutPassingOptions(): void
     {
         /** @var array $options */
         $options = $this->config->get("{$this->root}.connections.test");

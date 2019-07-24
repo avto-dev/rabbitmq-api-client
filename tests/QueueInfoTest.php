@@ -12,7 +12,7 @@ use Illuminate\Contracts\Support\Arrayable;
 use AvtoDev\RabbitMqApiClient\QueueInfoInterface;
 
 /**
- * @coversDefaultClass \AvtoDev\RabbitMqApiClient\QueueInfo
+ * @covers \AvtoDev\RabbitMqApiClient\QueueInfo<extended>
  */
 class QueueInfoTest extends AbstractTestCase
 {
@@ -26,7 +26,7 @@ class QueueInfoTest extends AbstractTestCase
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -36,7 +36,7 @@ class QueueInfoTest extends AbstractTestCase
     /**
      * @return void
      */
-    public function testImplementations()
+    public function testImplementations(): void
     {
         $this->assertInstanceOf(QueueInfoInterface::class, $this->queue_info);
         $this->assertInstanceOf(Arrayable::class, $this->queue_info);
@@ -46,7 +46,7 @@ class QueueInfoTest extends AbstractTestCase
     /**
      * @return void
      */
-    public function testConstructorAndInputDataGetters()
+    public function testConstructorAndInputDataGetters(): void
     {
         $queue_info = new QueueInfo($input = ['foo' => 'bar']);
 
@@ -55,11 +55,9 @@ class QueueInfoTest extends AbstractTestCase
     }
 
     /**
-     * @covers ::getConsumersCount
-     *
      * @return void
      */
-    public function testGetConsumersCount()
+    public function testGetConsumersCount(): void
     {
         $queue_info = new QueueInfo($this->getSampleData(
             null,
@@ -72,11 +70,9 @@ class QueueInfoTest extends AbstractTestCase
     }
 
     /**
-     * @covers ::getConsumersCount
-     *
      * @return void
      */
-    public function testGetConsumersCountUnset()
+    public function testGetConsumersCountUnset(): void
     {
         $queue_info = new QueueInfo($this->getSampleData());
 
@@ -84,11 +80,9 @@ class QueueInfoTest extends AbstractTestCase
     }
 
     /**
-     * @covers ::getMessagesCount
-     *
      * @return void
      */
-    public function testGetMessagesCount()
+    public function testGetMessagesCount(): void
     {
         $queue_info = new QueueInfo($this->getSampleData(
             null,
@@ -102,11 +96,9 @@ class QueueInfoTest extends AbstractTestCase
     }
 
     /**
-     * @covers ::getMessagesCount
-     *
      * @return void
      */
-    public function testGetMessagesCountUnset()
+    public function testGetMessagesCountUnset(): void
     {
         $queue_info = new QueueInfo($this->getSampleData());
 
@@ -114,11 +106,9 @@ class QueueInfoTest extends AbstractTestCase
     }
 
     /**
-     * @covers ::getName
-     *
      * @return void
      */
-    public function testGetName()
+    public function testGetName(): void
     {
         $queue_info = new QueueInfo($this->getSampleData(
             $name = Str::random()
@@ -128,11 +118,9 @@ class QueueInfoTest extends AbstractTestCase
     }
 
     /**
-     * @covers ::getName
-     *
      * @return void
      */
-    public function testGetNameUnset()
+    public function testGetNameUnset(): void
     {
         $queue_info = new QueueInfo($this->getSampleData());
 
@@ -140,11 +128,9 @@ class QueueInfoTest extends AbstractTestCase
     }
 
     /**
-     * @covers ::getNodeName
-     *
      * @return void
      */
-    public function testGetNodeName()
+    public function testGetNodeName(): void
     {
         $queue_info = new QueueInfo($this->getSampleData(
             null,
@@ -156,11 +142,9 @@ class QueueInfoTest extends AbstractTestCase
     }
 
     /**
-     * @covers ::getNodeName
-     *
      * @return void
      */
-    public function testGetNodeNameUnset()
+    public function testGetNodeNameUnset(): void
     {
         $queue_info = new QueueInfo($this->getSampleData());
 
@@ -168,11 +152,9 @@ class QueueInfoTest extends AbstractTestCase
     }
 
     /**
-     * @covers ::getState
-     *
      * @return void
      */
-    public function testGetState()
+    public function testGetState(): void
     {
         $queue_info = new QueueInfo($this->getSampleData(
             null,
@@ -187,11 +169,9 @@ class QueueInfoTest extends AbstractTestCase
     }
 
     /**
-     * @covers ::getState
-     *
      * @return void
      */
-    public function testGetStateUnset()
+    public function testGetStateUnset(): void
     {
         $queue_info = new QueueInfo($this->getSampleData());
 
@@ -199,11 +179,9 @@ class QueueInfoTest extends AbstractTestCase
     }
 
     /**
-     * @covers ::getVhost
-     *
      * @return void
      */
-    public function testGetVhost()
+    public function testGetVhost(): void
     {
         $queue_info = new QueueInfo($this->getSampleData(
             null,
@@ -214,11 +192,9 @@ class QueueInfoTest extends AbstractTestCase
     }
 
     /**
-     * @covers ::getVhost
-     *
      * @return void
      */
-    public function testGetVhostUnset()
+    public function testGetVhostUnset(): void
     {
         $queue_info = new QueueInfo($this->getSampleData());
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace AvtoDev\RabbitMqApiClient\Tests\Traits;
 
 use Illuminate\Contracts\Console\Kernel;

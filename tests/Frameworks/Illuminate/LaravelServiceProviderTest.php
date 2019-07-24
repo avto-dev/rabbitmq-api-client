@@ -11,14 +11,14 @@ use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactoryInterface;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider;
 
 /**
- * @coversDefaultClass \AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider
+ * @covers \AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider<extended>
  */
 class LaravelServiceProviderTest extends AbstractLaravelTestCase
 {
     /**
      * @return void
      */
-    public function testServiceProviderRegistration()
+    public function testServiceProviderRegistration(): void
     {
         $this->assertContains(LaravelServiceProvider::class, $this->app->getLoadedProviders());
     }
@@ -26,7 +26,7 @@ class LaravelServiceProviderTest extends AbstractLaravelTestCase
     /**
      * @return void
      */
-    public function testPackageConfigs()
+    public function testPackageConfigs(): void
     {
         $this->assertFileExists($path = LaravelServiceProvider::getConfigPath());
         $this->assertEquals(LaravelServiceProvider::getConfigRootKeyName(), $base = basename($path, '.php'));
@@ -53,7 +53,7 @@ class LaravelServiceProviderTest extends AbstractLaravelTestCase
     /**
      * @return void
      */
-    public function testRegistrationComponentsInIoc()
+    public function testRegistrationComponentsInIoc(): void
     {
         $this->assertInstanceOf(ClientFactory::class, $this->app->make(ClientFactoryInterface::class));
         $this->assertInstanceOf(ClientInterface::class, $this->app->make(ClientInterface::class));

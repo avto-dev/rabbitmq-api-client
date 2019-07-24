@@ -35,7 +35,7 @@ class LaravelServiceProvider extends IlluminateServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->initializeConfigs();
 
@@ -54,7 +54,7 @@ class LaravelServiceProvider extends IlluminateServiceProvider
      *
      * @return void
      */
-    protected function initializeConfigs()
+    protected function initializeConfigs(): void
     {
         $this->mergeConfigFrom(static::getConfigPath(), static::getConfigRootKeyName());
 

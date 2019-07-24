@@ -42,7 +42,7 @@ class QueueInfo implements QueueInfoInterface
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->raw_data['name'] ?? null;
     }
@@ -50,7 +50,7 @@ class QueueInfo implements QueueInfoInterface
     /**
      * {@inheritdoc}
      */
-    public function getNodeName()
+    public function getNodeName(): ?string
     {
         return $this->raw_data['node'] ?? null;
     }
@@ -58,7 +58,7 @@ class QueueInfo implements QueueInfoInterface
     /**
      * {@inheritdoc}
      */
-    public function getState()
+    public function getState(): ?string
     {
         return $this->raw_data['state'] ?? null;
     }
@@ -66,7 +66,7 @@ class QueueInfo implements QueueInfoInterface
     /**
      * {@inheritdoc}
      */
-    public function getVhost()
+    public function getVhost(): ?string
     {
         return $this->raw_data['vhost'] ?? null;
     }

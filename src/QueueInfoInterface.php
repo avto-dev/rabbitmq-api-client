@@ -26,26 +26,26 @@ interface QueueInfoInterface extends Jsonable, Arrayable
      *
      * @return string|null
      */
-    public function getName();
+    public function getName(): ?string;
 
     /**
      * Get node name.
      *
      * @return string|null
      */
-    public function getNodeName();
+    public function getNodeName(): ?string;
 
     /**
      * Get queue state value.
      *
      * @return string|null
      */
-    public function getState();
+    public function getState(): ?string;
 
     /**
      * Get queue vhost value.
      *
      * @return string|null
      */
-    public function getVhost();
+    public function getVhost(): ?string;
 }

@@ -14,7 +14,7 @@ abstract class AbstractLaravelTestCase extends \Illuminate\Foundation\Testing\Te
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

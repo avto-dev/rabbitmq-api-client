@@ -15,7 +15,7 @@ use AvtoDev\RabbitMqApiClient\ConnectionSettings;
 use Tarampampam\Wrappers\Exceptions\JsonEncodeDecodeException;
 
 /**
- * @coversDefaultClass \AvtoDev\RabbitMqApiClient\Client
+ * @covers \AvtoDev\RabbitMqApiClient\Client<extended>
  */
 class ClientTest extends AbstractTestCase
 {
@@ -32,7 +32,7 @@ class ClientTest extends AbstractTestCase
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -42,7 +42,7 @@ class ClientTest extends AbstractTestCase
     /**
      * @return void
      */
-    public function testImplementation()
+    public function testImplementation(): void
     {
         $client = new Client(new ConnectionSettings('http://127.0.0.1:15672'));
 
@@ -50,11 +50,9 @@ class ClientTest extends AbstractTestCase
     }
 
     /**
-     * @covers ::version
-     *
      * @return void
      */
-    public function testVersion()
+    public function testVersion(): void
     {
         $this->assertSame($version = Versions::getVersion(Client::SELF_PACKAGE_NAME), $this->client::version(false));
 
@@ -64,7 +62,7 @@ class ClientTest extends AbstractTestCase
     /**
      * @return void
      */
-    public function testPingSuccess()
+    public function testPingSuccess(): void
     {
         $this->client->mock_handler->append(
             new Response(200, ['content-type' => 'application/json'], Json::encode([
@@ -78,7 +76,7 @@ class ClientTest extends AbstractTestCase
     /**
      * @return void
      */
-    public function testPingFailed()
+    public function testPingFailed(): void
     {
         $this->client->mock_handler->append(
             new Response(200, ['content-type' => 'application/json'], Json::encode([
@@ -93,7 +91,7 @@ class ClientTest extends AbstractTestCase
     /**
      * @return void
      */
-    public function testPingWithWrongJsonResponse()
+    public function testPingWithWrongJsonResponse(): void
     {
         $this->expectException(JsonEncodeDecodeException::class);
 
@@ -107,7 +105,7 @@ class ClientTest extends AbstractTestCase
     /**
      * @return void
      */
-    public function testPingWithServerError()
+    public function testPingWithServerError(): void
     {
         $this->expectException(RequestException::class);
 
@@ -121,7 +119,7 @@ class ClientTest extends AbstractTestCase
     /**
      * @return void
      */
-    public function testQueueInfoSuccess()
+    public function testQueueInfoSuccess(): void
     {
         $this->client->mock_handler->append(
             new Response(200, ['content-type' => 'application/json'], ClientMock::queueInfoStub($this->queue_name))
@@ -134,7 +132,7 @@ class ClientTest extends AbstractTestCase
     /**
      * @return void
      */
-    public function testQueueInfoWithWrongJsonResponse()
+    public function testQueueInfoWithWrongJsonResponse(): void
     {
         $this->expectException(JsonEncodeDecodeException::class);
 
@@ -148,7 +146,7 @@ class ClientTest extends AbstractTestCase
     /**
      * @return void
      */
-    public function testQueueInfoWithServerError()
+    public function testQueueInfoWithServerError(): void
     {
         $this->expectException(RequestException::class);
 

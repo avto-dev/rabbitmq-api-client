@@ -10,14 +10,14 @@ use AvtoDev\RabbitMqApiClient\ConnectionSettings;
 use AvtoDev\RabbitMqApiClient\ConnectionSettingsInterface;
 
 /**
- * @coversDefaultClass \AvtoDev\RabbitMqApiClient\ConnectionSettings
+ * @covers \AvtoDev\RabbitMqApiClient\ConnectionSettings<extended>
  */
 class ConnectionSettingsTest extends AbstractTestCase
 {
     /**
      * @return void
      */
-    public function testImplementations()
+    public function testImplementations(): void
     {
         $this->assertInstanceOf(ConnectionSettingsInterface::class, new ConnectionSettings('http://127.0.0.1:15672'));
     }
@@ -25,7 +25,7 @@ class ConnectionSettingsTest extends AbstractTestCase
     /**
      * @return void
      */
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $settings = new ConnectionSettings(
             ($point = 'http://rabbitmq.com:1234/foo') . '/ ',
@@ -45,7 +45,7 @@ class ConnectionSettingsTest extends AbstractTestCase
     /**
      * @return void
      */
-    public function testDefaultUserAgent()
+    public function testDefaultUserAgent(): void
     {
         $settings = new ConnectionSettings('');
 

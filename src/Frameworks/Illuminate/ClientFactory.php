@@ -22,7 +22,7 @@ class ClientFactory implements ClientFactoryInterface
     protected $config_root;
 
     /**
-     * Client Factory constructor.
+     * Create a new ClientFactory instance.
      *
      * @param ConfigRepository $config
      */
