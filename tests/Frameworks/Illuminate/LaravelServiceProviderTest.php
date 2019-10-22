@@ -9,6 +9,7 @@ use Illuminate\Config\Repository as ConfigRepository;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactory;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactoryInterface;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider;
+use Illuminate\Support\Arr;
 
 /**
  * @covers \AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider<extended>
@@ -34,7 +35,7 @@ class LaravelServiceProviderTest extends AbstractLaravelTestCase
         /** @var ConfigRepository $config */
         $config = $this->app->make(ConfigRepository::class);
 
-        foreach (array_dot($configs = require $path) as $key => $value) {
+        foreach (Arr::dot($configs = require $path) as $key => $value) {
             $this->assertEquals($config->get($base . '.' . $key), $value);
         }
 
