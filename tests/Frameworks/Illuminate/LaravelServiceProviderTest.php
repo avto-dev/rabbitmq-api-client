@@ -4,12 +4,12 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient\Tests\Frameworks\Illuminate;
 
+use Illuminate\Support\Arr;
 use AvtoDev\RabbitMqApiClient\ClientInterface;
 use Illuminate\Config\Repository as ConfigRepository;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactory;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactoryInterface;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider;
-use Illuminate\Support\Arr;
 
 /**
  * @covers \AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider<extended>
