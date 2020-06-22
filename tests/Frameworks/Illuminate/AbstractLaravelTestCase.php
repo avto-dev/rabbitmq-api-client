@@ -10,6 +10,23 @@ use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider;
 abstract class AbstractLaravelTestCase extends \Illuminate\Foundation\Testing\TestCase
 {
     /**
+     * Creates the application.
+     *
+     * @return \Illuminate\Foundation\Application
+     */
+    public function createApplication()
+    {
+        /** @var \Illuminate\Foundation\Application $app */
+        $app = require __DIR__ . '/../../../vendor/laravel/laravel/bootstrap/app.php';
+
+        $app->make(Kernel::class)->bootstrap();
+
+        $app->register(LaravelServiceProvider::class);
+
+        return $app;
+    }
+
+    /**
      * Get a instance property (public/private/protected) value.
      *
      * @param object $object
@@ -25,22 +42,5 @@ abstract class AbstractLaravelTestCase extends \Illuminate\Foundation\Testing\Te
         $property->setAccessible(true);
 
         return $property->getValue($object);
-    }
-
-    /**
-     * Creates the application.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    public function createApplication()
-    {
-        /** @var \Illuminate\Foundation\Application $app */
-        $app = require __DIR__ . '/../../../vendor/laravel/laravel/bootstrap/app.php';
-
-        $app->make(Kernel::class)->bootstrap();
-
-        $app->register(LaravelServiceProvider::class);
-
-        return $app;
     }
 }
