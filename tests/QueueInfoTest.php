@@ -209,7 +209,7 @@ class QueueInfoTest extends AbstractTestCase
      * @param string $messages_count
      * @param string $state
      *
-     * @return array
+     * @return array<string, mixed>
      */
     protected function getSampleData($test_queue_name = self::NON_SET, //'test-queue',
                                      $test_vhost = self::NON_SET, //'/',

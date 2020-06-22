@@ -4,23 +4,11 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient\Tests\Frameworks\Illuminate;
 
-use AvtoDev\RabbitMqApiClient\Tests\Traits\CreatesApplicationTrait;
+use Illuminate\Contracts\Console\Kernel;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider;
 
 abstract class AbstractLaravelTestCase extends \Illuminate\Foundation\Testing\TestCase
 {
-    use CreatesApplicationTrait;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        $this->app->register(LaravelServiceProvider::class);
-    }
-
     /**
      * Get a instance property (public/private/protected) value.
      *
@@ -37,5 +25,22 @@ abstract class AbstractLaravelTestCase extends \Illuminate\Foundation\Testing\Te
         $property->setAccessible(true);
 
         return $property->getValue($object);
+    }
+
+    /**
+     * Creates the application.
+     *
+     * @return \Illuminate\Foundation\Application
+     */
+    public function createApplication()
+    {
+        /** @var \Illuminate\Foundation\Application $app */
+        $app = require __DIR__ . '/../../../vendor/laravel/laravel/bootstrap/app.php';
+
+        $app->make(Kernel::class)->bootstrap();
+
+        $app->register(LaravelServiceProvider::class);
+
+        return $app;
     }
 }
