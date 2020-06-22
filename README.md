@@ -5,7 +5,7 @@
 # RabbitMQ API Client
 
 [![Version][badge_packagist_version]][link_packagist]
-[![Version][badge_php_version]][link_packagist]
+[![PHP Version][badge_php_version]][link_packagist]
 [![Build Status][badge_build_status]][link_build_status]
 [![Coverage][badge_coverage]][link_coverage]
 [![Downloads count][badge_downloads_count]][link_packagist]
@@ -25,23 +25,9 @@ $ composer require avto-dev/rabbitmq-api-client "^2.0"
 
 > You need to fix the major version of package.
 
->If you wants to disable package service-provider auto discover, just add into your `composer.json` next lines:
->
->```json
->{
->    "extra": {
->        "laravel": {
->            "dont-discover": [
->                "avto-dev/rabbitmq-api-client"
->            ]
->        }
->    }
->}
->```
-
 After that you can "publish" package configuration file using following command:
 
-```php
+```bash
 $ php artisan vendor:publish --provider="AvtoDev\\RabbitMqApiClient\\Frameworks\\Illuminate\\LaravelServiceProvider"
 ```
 
@@ -81,7 +67,7 @@ class SomeCommand extends \Illuminate\Console\Command
      * @var string
      */
     protected $name = 'some:command';
-    
+
     /**
      * Execute the console command.
      *
@@ -126,7 +112,7 @@ This is open-sourced software licensed under the [MIT License][link_license].
 
 [badge_packagist_version]:https://img.shields.io/packagist/v/avto-dev/rabbitmq-api-client.svg?maxAge=180
 [badge_php_version]:https://img.shields.io/packagist/php-v/avto-dev/rabbitmq-api-client.svg?longCache=true
-[badge_build_status]:https://travis-ci.org/avto-dev/rabbitmq-api-client.svg?branch=master
+[badge_build_status]:https://img.shields.io/github/workflow/status/avto-dev/rabbitmq-api-client/tests/master
 [badge_coverage]:https://img.shields.io/codecov/c/github/avto-dev/rabbitmq-api-client/master.svg?maxAge=60
 [badge_downloads_count]:https://img.shields.io/packagist/dt/avto-dev/rabbitmq-api-client.svg?maxAge=180
 [badge_license]:https://img.shields.io/packagist/l/avto-dev/rabbitmq-api-client.svg?longCache=true

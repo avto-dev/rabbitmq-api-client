@@ -31,7 +31,7 @@ class Client implements ClientInterface
      * Client constructor.
      *
      * @param ConnectionSettingsInterface $settings
-     * @param array                       $guzzle_config
+     * @param array<string, mixed>        $guzzle_config
      *
      * @see \GuzzleHttp\Client::__construct
      */
@@ -104,7 +104,7 @@ class Client implements ClientInterface
      *
      * @link <http://docs.guzzlephp.org/en/stable/request-options.html>
      *
-     * @return array
+     * @return array<string, mixed>
      */
     protected function defaultRequestOptions(): array
     {

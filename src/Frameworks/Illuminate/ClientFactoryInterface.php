@@ -9,7 +9,7 @@ interface ClientFactoryInterface
     /**
      * Get all available connections list.
      *
-     * @return string[]
+     * @return array<string>
      */
     public function connectionNames(): array;
 
@@ -24,8 +24,8 @@ interface ClientFactoryInterface
      * Make RabbitMQ API client instance, configured using configuration file (connections section). If connection
      * name is not specified - used default connection name.
      *
-     * @param string|null $connection_name
-     * @param array|null  $options
+     * @param string|null               $connection_name
+     * @param array<string, mixed>|null $options
      *
      * @throws \InvalidArgumentException
      *

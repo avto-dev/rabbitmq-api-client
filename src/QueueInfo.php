@@ -9,14 +9,14 @@ use Tarampampam\Wrappers\Json;
 class QueueInfo implements QueueInfoInterface
 {
     /**
-     * @var array
+     * @var array<string, mixed>
      */
     protected $raw_data;
 
     /**
      * Queue Info constructor.
      *
-     * @param array $raw_data
+     * @param array<string, mixed> $raw_data
      */
     public function __construct(array $raw_data)
     {
@@ -80,7 +80,7 @@ class QueueInfo implements QueueInfoInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @return array<string, mixed>
      */
     public function toArray(): array
     {

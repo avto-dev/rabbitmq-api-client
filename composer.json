@@ -15,29 +15,36 @@
         }
     ],
     "require": {
-        "php": "^7.1.3",
+        "php": "^7.2",
         "ext-json": "*",
         "ext-mbstring": "*",
         "guzzlehttp/guzzle": "^6.0",
-        "illuminate/contracts": ">=5.5.0 <5.9.0 || ~6.0",
-        "illuminate/support": ">=5.5.0 <5.9.0 || ~6.0",
-        "illuminate/config": ">=5.5.0 <5.9.0 || ~6.0",
+        "illuminate/contracts": "^5.5 || ~6.0 || ~7.0",
+        "illuminate/support": "^5.5 || ~6.0 || ~7.0",
+        "illuminate/config": "^5.5 || ~6.0 || ~7.0",
         "tarampampam/wrappers-php": "^1.2",
         "ocramius/package-versions": "^1.2"
     },
     "require-dev": {
-        "laravel/laravel": ">=5.5.0 <5.9.0 || ~6.0",
-        "phpstan/phpstan": "^0.11.3",
+        "laravel/laravel": "^5.5 || ~6.0 || ~7.0",
+        "phpstan/phpstan": "^0.12",
         "phpunit/phpunit": "^6.4 || ~7.5"
     },
     "autoload": {
         "psr-4": {
-            "AvtoDev\\RabbitMqApiClient\\": "src"
+            "AvtoDev\\RabbitMqApiClient\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "AvtoDev\\RabbitMqApiClient\\Tests\\": "tests"
+            "AvtoDev\\RabbitMqApiClient\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AvtoDev\\RabbitMqApiClient\\Frameworks\\Illuminate\\LaravelServiceProvider"
+            ]
         }
     },
     "scripts": {
@@ -53,19 +60,8 @@
             "@phpunit-cover"
         ]
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "AvtoDev\\RabbitMqApiClient\\Frameworks\\Illuminate\\LaravelServiceProvider"
-            ]
-        }
-    },
     "support": {
         "issues": "https://github.com/avto-dev/rabbitmq-api-client/issues",
         "source": "https://github.com/avto-dev/rabbitmq-api-client"
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "prefer-stable": true
+    }
 }

@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default RabbitMQ API Client Connection Name
@@ -35,5 +34,4 @@ return [
         ],
 
     ],
-
 ];
