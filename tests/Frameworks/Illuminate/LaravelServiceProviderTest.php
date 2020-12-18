@@ -21,7 +21,7 @@ class LaravelServiceProviderTest extends AbstractLaravelTestCase
      */
     public function testServiceProviderRegistration(): void
     {
-        $this->assertContains(LaravelServiceProvider::class, $this->app->getLoadedProviders());
+        $this->assertTrue($this->app->getLoadedProviders()[LaravelServiceProvider::class]);
     }
 
     /**
