@@ -13,7 +13,7 @@ use AvtoDev\RabbitMqApiClient\ClientInterface;
 use AvtoDev\RabbitMqApiClient\ConnectionSettings;
 
 /**
- * @covers \AvtoDev\RabbitMqApiClient\Client<extended>
+ * @covers \AvtoDev\RabbitMqApiClient\Client
  */
 class ClientTest extends AbstractTestCase
 {

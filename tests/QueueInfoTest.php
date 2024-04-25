@@ -11,7 +11,7 @@ use Illuminate\Contracts\Support\Arrayable;
 use AvtoDev\RabbitMqApiClient\QueueInfoInterface;
 
 /**
- * @covers \AvtoDev\RabbitMqApiClient\QueueInfo<extended>
+ * @covers \AvtoDev\RabbitMqApiClient\QueueInfo
  */
 class QueueInfoTest extends AbstractTestCase
 {
