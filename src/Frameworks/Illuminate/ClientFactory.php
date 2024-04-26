@@ -76,8 +76,8 @@ class ClientFactory implements ClientFactoryInterface
         /** @var string $password */
         $password = $options[$password_key = 'password'] ?? $connection_options[$password_key];
 
-        /** @var int $timeout */
-        $timeout = $options[$timeout_key = 'timeout'] ?? $connection_options[$timeout_key] ?? 5;
+        $timeout_data = $options[$timeout_key = 'timeout'] ?? $connection_options[$timeout_key] ?? 5;
+        $timeout      = \is_numeric($timeout_data) ? \intval($timeout_data) : 5;
 
         /** @var string|null $user_agent */
         $user_agent = $options[$user_agent_key = 'user_agent'] ?? $connection_options[$user_agent_key] ?? null;
