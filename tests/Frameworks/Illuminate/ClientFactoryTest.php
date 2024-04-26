@@ -14,7 +14,7 @@ use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactoryInterface;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider;
 
 /**
- * @covers \AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactory<extended>
+ * @covers \AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactory
  */
 class ClientFactoryTest extends AbstractLaravelTestCase
 {

@@ -28,7 +28,7 @@ return [
             'entrypoint' => env('RABBITMQ_API_ENTRYPOINT', 'http://127.0.0.1:15672'),
             'login'      => env('RABBITMQ_API_LOGIN', 'guest'),
             'password'   => env('RABBITMQ_API_PASSWORD', 'guest'),
-            'timeout'    => (int) env('RABBITMQ_API_TIMEOUT', 5),
+            'timeout'    => env('RABBITMQ_API_TIMEOUT', 5),
             'user_agent' => env('RABBITMQ_API_USER_AGENT'),
             //'guzzle_config' => [], // Documentation: <http://docs.guzzlephp.org/en/latest/quickstart.html>
         ],

@@ -10,7 +10,7 @@ use AvtoDev\RabbitMqApiClient\ConnectionSettings;
 use AvtoDev\RabbitMqApiClient\ConnectionSettingsInterface;
 
 /**
- * @covers \AvtoDev\RabbitMqApiClient\ConnectionSettings<extended>
+ * @covers \AvtoDev\RabbitMqApiClient\ConnectionSettings
  */
 class ConnectionSettingsTest extends AbstractTestCase
 {

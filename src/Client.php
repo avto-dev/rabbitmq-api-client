@@ -91,13 +91,13 @@ class Client implements ClientInterface
     /**
      * HTTP client factory.
      *
-     * @param mixed ...$arguments
+     * @param array<string, mixed> $arguments
      *
      * @return GuzzleClientInterface
      */
-    protected function httpClientFactory(...$arguments): GuzzleClientInterface
+    protected function httpClientFactory(array $arguments): GuzzleClientInterface
     {
-        return new GuzzleHttpClient(...$arguments);
+        return new GuzzleHttpClient($arguments);
     }
 
     /**

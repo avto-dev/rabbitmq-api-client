@@ -26,7 +26,9 @@ class QueueInfo implements QueueInfoInterface
      */
     public function getConsumersCount(): int
     {
-        return (int) ($this->raw_data['consumers'] ?? 0);
+        $consumers_count = $this->raw_data['consumers'] ?? 0;
+
+        return \is_numeric($consumers_count) ? \intval($consumers_count) : 0;
     }
 
     /**
@@ -34,7 +36,9 @@ class QueueInfo implements QueueInfoInterface
      */
     public function getMessagesCount(): int
     {
-        return (int) ($this->raw_data['messages'] ?? 0);
+        $message_count = $this->raw_data['messages'] ?? 0;
+
+        return \is_numeric($message_count) ? \intval($message_count) : 0;
     }
 
     /**
@@ -42,7 +46,9 @@ class QueueInfo implements QueueInfoInterface
      */
     public function getName(): ?string
     {
-        return $this->raw_data['name'] ?? null;
+        $name = $this->raw_data['name'] ?? null;
+
+        return \is_string($name) ? $name : null;
     }
 
     /**
@@ -50,7 +56,9 @@ class QueueInfo implements QueueInfoInterface
      */
     public function getNodeName(): ?string
     {
-        return $this->raw_data['node'] ?? null;
+        $node = $this->raw_data['node'] ?? null;
+
+        return \is_string($node) ? $node : null;
     }
 
     /**
@@ -58,7 +66,9 @@ class QueueInfo implements QueueInfoInterface
      */
     public function getState(): ?string
     {
-        return $this->raw_data['state'] ?? null;
+        $state = $this->raw_data['state'] ?? null;
+
+        return \is_string($state) ? $state : null;
     }
 
     /**
@@ -66,7 +76,9 @@ class QueueInfo implements QueueInfoInterface
      */
     public function getVhost(): ?string
     {
-        return $this->raw_data['vhost'] ?? null;
+        $vhost = $this->raw_data['vhost'] ?? null;
+
+        return \is_string($vhost) ? $vhost : null;
     }
 
     /**

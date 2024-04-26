@@ -12,7 +12,7 @@ use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\ClientFactoryInterface;
 use AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider;
 
 /**
- * @covers \AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider<extended>
+ * @covers \AvtoDev\RabbitMqApiClient\Frameworks\Illuminate\LaravelServiceProvider
  */
 class LaravelServiceProviderTest extends AbstractLaravelTestCase
 {
