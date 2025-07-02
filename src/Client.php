@@ -85,7 +85,10 @@ class Client implements ClientInterface
             ->getBody()
             ->getContents();
 
-        return new QueueInfo((array) \json_decode($contents, true, 512, JSON_THROW_ON_ERROR));
+        /** @var array<string, mixed> $raw_data */
+        $raw_data = (array) \json_decode($contents, true, 512, JSON_THROW_ON_ERROR);
+
+        return new QueueInfo($raw_data);
     }
 
     /**
