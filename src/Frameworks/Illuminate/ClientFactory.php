@@ -84,9 +84,12 @@ class ClientFactory implements ClientFactoryInterface
 
         $settings = new ConnectionSettings($entrypoint, $login, $password, $timeout, $user_agent);
 
+        /** @var array<string, mixed> $guzzle_config */
+        $guzzle_config = (array) ($options[$guzzle_config_key = 'guzzle_config'] ?? $connection_options[$guzzle_config_key] ?? []);
+
         return $this->clientFactory(
             $settings,
-            (array) ($options[$guzzle_config_key = 'guzzle_config'] ?? $connection_options[$guzzle_config_key] ?? [])
+            $guzzle_config
         );
     }
 
