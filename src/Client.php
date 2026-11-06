@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace AvtoDev\RabbitMqApiClient;
 
-use PackageVersions\Versions;
+use Composer\InstalledVersions;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\RequestOptions as GuzzleOptions;
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
@@ -45,7 +45,11 @@ class Client implements ClientInterface
      */
     public static function version(bool $without_hash = true): string
     {
-        $version = Versions::getVersion(self::SELF_PACKAGE_NAME);
+        $pretty    = InstalledVersions::getPrettyVersion(self::SELF_PACKAGE_NAME) ?? '';
+        $reference = InstalledVersions::getReference(self::SELF_PACKAGE_NAME);
+        $version   = \is_string($reference) && $reference !== ''
+            ? $pretty . '@' . $reference
+            : $pretty;
 
         if ($without_hash === true && \is_int($delimiter_position = \mb_strpos($version, '@'))) {
             return \mb_substr($version, 0, (int) $delimiter_position);

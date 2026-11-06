@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace AvtoDev\RabbitMqApiClient\Tests;
 
 use GuzzleHttp\Psr7\Response;
-use PackageVersions\Versions;
+use Composer\InstalledVersions;
 use AvtoDev\RabbitMqApiClient\Client;
 use AvtoDev\RabbitMqApiClient\QueueInfo;
 use GuzzleHttp\Exception\RequestException;
@@ -52,7 +52,13 @@ class ClientTest extends AbstractTestCase
      */
     public function testVersion(): void
     {
-        $this->assertSame($version = Versions::getVersion(Client::SELF_PACKAGE_NAME), $this->client::version(false));
+        $pretty    = InstalledVersions::getPrettyVersion(Client::SELF_PACKAGE_NAME) ?? '';
+        $reference = InstalledVersions::getReference(Client::SELF_PACKAGE_NAME);
+        $version   = \is_string($reference) && $reference !== ''
+            ? $pretty . '@' . $reference
+            : $pretty;
+
+        $this->assertSame($version, $this->client::version(false));
 
         $this->assertSame(\mb_substr($version, 0, (int) \mb_strpos($version, '@')), $this->client::version());
     }
